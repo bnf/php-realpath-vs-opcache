@@ -1,4 +1,4 @@
-.PHONY: check setup shutdown
+.PHONY: check shutdown
 
 .travis/assert-1.1.sh:
 	wget https://raw.github.com/lehmannro/assert.sh/v1.1/assert.sh -O $@
@@ -10,13 +10,14 @@
 
 prepare: .travis/assert-1.1.sh .travis/cachetool.phar
 
-setup:
-	@$(MAKE) shutdown
+
+.travis/nginx: .travis/*.conf
 	.travis/install-nginx.sh
+
+setup: .travis/nginx
 
 check: prepare setup
 	HOST=http://localhost:8088 .travis/run-tests.sh
-	#@$(MAKE) shutdown
 
 shutdown:
 	-pkill -F /tmp/php-fpm.pid
