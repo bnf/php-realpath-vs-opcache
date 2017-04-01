@@ -14,6 +14,8 @@ function test() {
 	echo $content
 }
 
+$DIR/cachetool.phar opcache:reset --fcgi 127.0.0.1:9876
+
 ln -snf release-1 $ROOT/web
 assert "test / initial-state-all-fine" "release-1: __DIR__:$ROOT/release-1 realpath:$ROOT/release-1"
 
