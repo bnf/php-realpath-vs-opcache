@@ -30,8 +30,7 @@ ln -snf release-1 $ROOT/web
 assert "test / symlink-switch-but-realpath-still-same-as-php-opcache-but-both-not-updated-to-symlink" "release-2: __DIR__:$ROOT/release-2 realpath:$ROOT/release-2"
 
 sleep 125
-
-# sleep 125 could be replaced by `cachetool stat:clear` as fastpath, but to demonstrate the real world case we use the long sleep
+# sleep 125 could be replaced by `cachetool stat:clear` as a fastpath – but to demonstrate the real world case, we use the slow sleep
 #$DIR/cachetool.phar stat:clear --fcgi 127.0.0.1:9876
 
 assert "test / 125-sec-after-symlink-switch-realpath-is-newer-than-php-opcache-but-still-using-the-old-release" "release-2: __DIR__:$ROOT/release-2 realpath:$ROOT/release-1"
