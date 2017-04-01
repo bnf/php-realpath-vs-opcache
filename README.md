@@ -18,3 +18,22 @@ See .travis/run-tests.sh.
 Possible workaround is to never use realpath(), but always
 rely on `__DIR__`/`__FILENAME__`.
 That's demonstrated in: https://github.com/bnf/static-docroot
+
+
+How to use
+----------
+
+```
+# on fedora
+dnf install nginx coreutils php-fpm
+
+# on debian/ubuntu
+apt-get install nginx-extras realpath php-fpm
+
+```
+
+```
+make check
+
+make shutdown
+```
