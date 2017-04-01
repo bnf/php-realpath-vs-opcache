@@ -26,7 +26,9 @@ assert "test / load-after-opcache" "release-2: __DIR__:$ROOT/release-2 realpath:
 
 ## THIS TEST WILL FAIL! the php realpath cache is reset, but the opcache not
 ln -snf release-1 $ROOT/web
-$DIR/cachetool.phar stat:clear --fcgi 127.0.0.1:9876
+
+#$DIR/cachetool.phar stat:clear --fcgi 127.0.0.1:9876
+sleep 125
 assert "test / realpath-is-newer-than-php-opcache" "release-2: __DIR__:$ROOT/release-2 realpath:$ROOT/release-1"
 
 
